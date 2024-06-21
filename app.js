@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function checkUserAuthentication() {
   var token = getCookie('id_token');
+  console.log(token);
 
   if (token) {
     document.getElementById('authButtons').style.display = 'none';
