@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <p class="card-text">Unidades Totales: ${material.Cantidad}</p>
           <p class="card-text">Disponibles: ${material.Unidades_Disponibles}</p>
           ${material.ISBN ? `<p class="card-text">ISBN: ${material.ISBN}</p>` : ''}
-          ${material.Año_de_Publicación ? `<p class="card-text">Año de Publicación: ${material.Año_de_Publicación}</p>` : ''}
+          ${material.Año_de_Publicacion ? `<p class="card-text">Año de Publicación: ${material.Año_de_Publicacion}</p>` : ''}
           ${material.Autor ? `<p class="card-text">Autor: ${material.Autor}</p>` : ''}
           ${material.Modelo ? `<p class="card-text">Modelo: ${material.Modelo}</p>` : ''}
           ${material.Asignatura ? `<p class="card-text">Asignatura: ${material.Asignatura}</p>` : ''}
@@ -74,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>`;
 
     materialDetails.innerHTML = materialDetailsHTML;
+
+    document.getElementById('editButton').addEventListener('click', function() {
+      localStorage.setItem('materialData', JSON.stringify(material));
+      window.location.href = `../MaterialsEdit/editMaterial.html?type=${encodeURIComponent(materialType)}&id=${encodeURIComponent(materialID)}`;
+    });
 
     var userRol = getUserRol();
     if (userRol.includes(userRoles.GESTORES)) {
