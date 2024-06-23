@@ -8,7 +8,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../../styles.css" />
   </head>
 
   <body>
@@ -54,17 +54,43 @@
     </header>
 
     <div class="container mt-5">
-      <h2 class="h2">Listado de Materiales</h2>
-      <div class="d-flex justify-content-between align-items-center">
-        <button id="addMaterialButton" class="btn btn-success", style="display: none;">
-          Agregar Material
-        </button>
-      <div id="materialsList" class="mt-4"></div>
+      <h1 class="h1">Agregar nuevo Material</h1>
+      <form id="addMaterialForm">
+        <div class="form-group">
+          <label for="TipoMaterial">Tipo de Material</label>
+          <select class="form-control" id="TipoMaterial" name="TipoMaterial" required>
+            <option value="Libros">Libros</option>
+            <option value="Apuntes">Apuntes</option>
+            <option value="Calculadoras">Calculadoras</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="NombreMaterial">Nombre del Material</label>
+          <input
+            type="text"
+            class="form-control"
+            id="NombreMaterial"
+            name="NombreMaterial"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="CantidadMaterial">Cantidad</label>
+          <input
+            type="number"
+            class="form-control"
+            id="CantidadMaterial"
+            name="CantidadMaterial"
+            required
+          />
+        </div>
+        <div class="form-group" id="additionalFields"></div>
+        <button type="submit" class="btn btn-success">Agregar Material</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./materials.js"></script>
-    <script src="../config.js"></script>
+    <script src="./addMaterial.js"></script>
+    <script src="../../config.js"></script>
   </body>
 </html>

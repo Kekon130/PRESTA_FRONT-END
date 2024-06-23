@@ -6,7 +6,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  function getUserRol() {
+    var token = getCookie('id_token');    
+    var payload = token.split('.')[1];
+    var decodedPayload = atob(payload);
+    var payloadObj = JSON.parse(decodedPayload);
+    return payloadObj['cognito:groups'] || [];
+  }
+
   checkSession();
+
+  var userRoles = getUserRol();
+
+  if (userRoles.includes(window._env_.USER_ROLES.GESTORES)) {
+    document.getElementById('addMaterialButton').style.display = 'block';
+    document.getElementById('addMaterialButton').addEventListener('click', function() {
+      window.location.href = './MaterialsAdd/addMaterial.html';
+    });
+  }
 
   var materialsList = document.getElementById('materialsList');
 

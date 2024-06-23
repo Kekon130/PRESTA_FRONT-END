@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`${window._env_.BASE_API_URL}/material/${materialType}/${materialID}`, {
           method: 'DELETE',
           headers: {
+            'Content-Type': 'application/json',
             auth: getCookie('id_token')
           }
         })
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(function(data) {
           alert(data.message);
-          window.location.href = '../Materials/materials.html';
+          window.location.href = '../materials.html';
         })
         .catch(function(error) {
           alert(`Error al eliminar el material: ${error.message}`);
