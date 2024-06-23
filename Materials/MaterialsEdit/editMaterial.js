@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var materialData = localStorage.getItem('materialData');
   if (!materialData) {
     alert('No se ha encontrado información del material');
-    window.location.href = '../Materials/materials.html';
+    window.location.href = '../materials.html';
   }
 
   var material = JSON.parse(materialData);

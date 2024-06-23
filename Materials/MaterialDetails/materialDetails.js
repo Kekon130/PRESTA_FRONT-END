@@ -80,6 +80,34 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = `../MaterialsEdit/editMaterial.html?type=${encodeURIComponent(materialType)}&id=${encodeURIComponent(materialID)}`;
     });
 
+    document.getElementById('deleteButton').addEventListener('click', function() {
+      var confirmation = confirm('¿Está seguro que desea eliminar este material?');
+      if (confirmation) {
+        fetch(`${window._env_.BASE_API_URL}/material/${materialType}/${materialID}`, {
+          method: 'DELETE',
+          headers: {
+            auth: getCookie('id_token')
+          }
+        })
+        .then(function(response) {
+          if (!response.ok) {
+            return response.json().then(function(error) {
+              throw new Error(error.message);
+            });
+          } else {
+            return response.json();
+          }
+        })
+        .then(function(data) {
+          alert(data.message);
+          window.location.href = '../Materials/materials.html';
+        })
+        .catch(function(error) {
+          alert(`Error al eliminar el material: ${error.message}`);
+        });
+      }
+    });
+
     var userRol = getUserRol();
     if (userRol.includes(userRoles.GESTORES)) {
       document.getElementById('editButton').style.display = 'inline-block';
