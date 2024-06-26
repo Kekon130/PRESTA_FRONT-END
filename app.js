@@ -11,7 +11,7 @@ function checkUserAuthentication() {
     document.getElementById('userLink').style.display = 'block';
 
     document.getElementById('userLink').addEventListener('click', () => {
-      window.location.href = '/profile';
+      window.location.href = './Usuarios/UsuarioDetalles/userDetails.html';
     });
 
     document.getElementById('logoutButton').addEventListener('click', () => {

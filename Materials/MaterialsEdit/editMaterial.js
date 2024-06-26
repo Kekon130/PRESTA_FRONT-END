@@ -92,8 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('editMaterialForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    var form = event.target;
-    var formData = new FormData(form);
     var materialData = {
       Nombre: document.getElementById('nombre').value,
       Cantidad: document.getElementById('cantidad').value,

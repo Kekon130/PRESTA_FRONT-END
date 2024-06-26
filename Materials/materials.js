@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var userRoles = getUserRol();
 
   if (userRoles.includes(window._env_.USER_ROLES.GESTORES)) {
-    document.getElementById('addMaterialButton').style.display = 'block';
+    document.getElementById('addMaterialButton').style.display = 'inline-block';
     document.getElementById('addMaterialButton').addEventListener('click', function() {
       window.location.href = './MaterialsAdd/addMaterial.html';
     });

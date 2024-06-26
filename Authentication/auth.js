@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = '../index.html';
     })
     .catch(error => {
-      console.error(error)
+      alert('Usuario o contraseña incorrectos');
     })
   });
 });

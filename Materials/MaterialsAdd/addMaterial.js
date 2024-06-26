@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var data = {
       Nombre: nombreMaterial,
       Cantidad: cantidadMaterial,
-      ISBN: additionalData.ISBNMaterial,
-      Año_de_Publicacion: additionalData.Año_de_PublicaciónMaterial,
-      Asignatura: additionalData.AsignaturaMaterial,
-      Modelo: additionalData.ModeloMaterial,
-      Autor: additionalData.AutorMaterial
+      ISBN: additionalData.ISBNMaterial ? document.getElementById('ISBNMaterial').value : undefined,
+      Año_de_Publicacion: additionalData.Año_de_PublicaciónMaterial ? document.getElementById('Año_de_PublicaciónMaterial').value : undefined,
+      Asignatura: additionalData.AsignaturaMaterial ? document.getElementById('AsignaturaMaterial').value : undefined,
+      Autor: additionalData.AutorMaterial ? document.getElementById('AutorMaterial').value : undefined,
+      Modelo: additionalData.ModeloMaterial ? document.getElementById('ModeloMaterial').value : undefined
     };
 
     console.log(data);
