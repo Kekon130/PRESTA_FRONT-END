@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var decodedPayload = atob(payload);
     var payloadObj = JSON.parse(decodedPayload);
     return {
+      userName: payloadObj['sub'] || undefined,
       email: payloadObj['email'] || undefined,
       name: payloadObj['name'] || undefined,
       rol: payloadObj['cognito:groups'][0] || undefined
@@ -33,9 +34,30 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.href = '../UsuarioEditar/userEdit.html';
   });
 
-  document.getElementById('deleteUserButton').addEventListener('click', function() {
-    return
-  });
+  if (userAttributes.rol !== window._env_.USER_ROLES.ADMINISTRADORES) {
+    document.getElementById('deleteButton').style.display = 'inline-block';
+    document.getElementById('deleteButton').addEventListener('click', function() {
+      fetch(`${window._env_.BASE_API_URL}/usuario/alumnos/${userAttributes.userName}`, {
+        method: 'DELETE',
+        headers: {
+          auth: getCookie('id_token')
+        }
+      })
+      .then(function(response) {
+        if (response.ok) {
+          alert('Usuario eliminado');
+          window.location.href = '../../Authentication/login.html';
+        } else {
+          return response.json().then(function(error) {
+            throw new Error(error.message);
+          });
+        }
+      })
+      .catch(function(error) {
+        alert(error.message);
+      });
+    });
+  }
 });
 
 function getCookie(name) {

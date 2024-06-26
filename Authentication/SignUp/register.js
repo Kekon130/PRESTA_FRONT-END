@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(data => {
       alert('Usuario registrado correctamente');
-      window.location.href = '../index.html';
+      window.location.href = '../ConfirmAccount/confirmAccount.html';
     })
     .catch(error => {
       alert(`Error al registrar usuario: ${error.message}`);
