@@ -19,13 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   checkSession();
 
-  var userName = getUserName();
+  var userData = getUserAttributes();
   var userEditFormContainer = document.getElementById('userEditFormContainer');
   var userEditForm = `
     <form id="userEditForm">
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre" value="${userName}" required>
+        <input type="text" class="form-control" id="nombre" value="${userData.name}" required>
       </div>
       <div class="form-group">
         <label for="password">Nueva Contraseña</label>
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log(userAttributes);
 
-    fetch(`${window._env_.API_URL}/users/${userName}`, {
+    fetch(`${window._env_.API_URL}/users/${userData.userName}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

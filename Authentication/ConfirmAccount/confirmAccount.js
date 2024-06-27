@@ -1,15 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function getQueryParams() {
-    var queryParams = {};
-    var search = window.location.search.substring(1);
-    var query = search.split('&');
-    for (var i = 0; i < query.length; i++) {
-      var pair = query[i].split('=');
-      queryParams[pair[0]] = pair[1];
-    }
-    return queryParams;
-  }
-
   var confirmAccountForm = document.getElementById('confirmAccountForm');
   var queryParams = getQueryParams();
 
@@ -21,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
       code: code
     };
 
-    fetch(`${window._env_.API_URL}/registro/${userData.email}`, {
+    fetch(`${window._env_.API_URL}/registro/${email}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

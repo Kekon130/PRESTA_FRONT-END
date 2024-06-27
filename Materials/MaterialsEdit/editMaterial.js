@@ -1,42 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function checkSession() {
-    var token = getCookie('id_token');
-    if(!token) {
-      window.location.href = "../../Authentication/login.html";
-    }
-  }
-
-  function getQueryParams() {
-    var queryParams = {};
-    var queryString = window.location.search.slice(1);
-    var queryArray = queryString.split('&');
-
-    queryArray.forEach(function(query) {
-      var queryPair = query.split('=');
-      queryParams[decodeURIComponent(queryPair[0])] = decodeURIComponent(queryPair[1]);
-    });
-
-    return queryParams;
-  }
-
-  function getUserRol() {
-    var token = getCookie('id_token');    
-    var payload = token.split('.')[1];
-    var decodedPayload = atob(payload);
-    var payloadObj = JSON.parse(decodedPayload);
-    return payloadObj['cognito:groups'] || [];
-  }
-
-  function veryfyRol() {
-    var userRol = getUserRol();
-    if (!userRol.includes(window._env_.USER_ROLES.GESTORES)) {
-      alert('No tienes permisos para acceder a esta página');
-      window.location.href = '../../Authentication/login.html';
-    }
-  }
+  var userRoles = window._env_.USER_ROLES;
 
   checkSession();
-  veryfyRol();
+  veryfyRol([userRoles.GESTORES]);
 
   var materialData = localStorage.getItem('materialData');
   if (!materialData) {
@@ -125,16 +91,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-
-function getCookie(name) {
-  var cookieArr = document.cookie.split(';');
-
-  for (var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split('=');
-    if (name === cookiePair[0].trim()) {
-      return decodeURIComponent(cookiePair[1]);
-    }
-  }
-
-  return null;
-}

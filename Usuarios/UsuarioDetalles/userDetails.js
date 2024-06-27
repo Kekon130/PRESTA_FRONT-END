@@ -1,24 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function checkSession() {
-    var token = getCookie('id_token');
-    if(!token) {
-      window.location.href = '../Authentication/login.html';
-    }
-  }
-
-  function getUserAttributes() {
-    var token = getCookie('id_token');    
-    var payload = token.split('.')[1];
-    var decodedPayload = atob(payload);
-    var payloadObj = JSON.parse(decodedPayload);
-    return {
-      userName: payloadObj['sub'] || undefined,
-      email: payloadObj['email'] || undefined,
-      name: payloadObj['name'] || undefined,
-      rol: payloadObj['cognito:groups'][0] || undefined
-    }
-  }
-
   checkSession();
   
   var userAttributes = getUserAttributes();
@@ -59,16 +39,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-
-function getCookie(name) {
-  var cookieArr = document.cookie.split(';');
-
-  for (var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split('=');
-    if (name === cookiePair[0].trim()) {
-      return decodeURIComponent(cookiePair[1]);
-    }
-  }
-
-  return null;
-}

@@ -1,24 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function checkSession() {
-    var token = getCookie('id_token');
-    if(!token) {
-      window.location.href = '../Authentication/login.html';
-    }
-  }
-
-  function getUserRol() {
-    var token = getCookie('id_token');    
-    var payload = token.split('.')[1];
-    var decodedPayload = atob(payload);
-    var payloadObj = JSON.parse(decodedPayload);
-    return payloadObj['cognito:groups'] || [];
-  }
-
   checkSession();
+  var userRoles = window._env_.USER_ROLES;
+  veryfyRol([userRoles.GESTORES, userRoles.ALUMNOS]);
 
   var userRoles = getUserRol();
 
-  if (userRoles.includes(window._env_.USER_ROLES.GESTORES)) {
+  if (userRoles.includes(userRoles.GESTORES)) {
     document.getElementById('addMaterialButton').style.display = 'inline-block';
     document.getElementById('addMaterialButton').addEventListener('click', function() {
       window.location.href = './MaterialsAdd/addMaterial.html';
@@ -45,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     Object.keys(data).forEach(function(key) {
       var materialsType = key.charAt(0).toUpperCase() + key.slice(1);
-      console.log(materialsType);
       materialsHTML += `<h3>${materialsType}</h3>`;
 
       data[key].forEach(function(material, index) {
@@ -72,16 +58,3 @@ document.addEventListener('DOMContentLoaded', function() {
     materialsList.innerHTML = `<p>Error al cargar los materiales: ${error.message}.</p>`;
   });
 });
-
-function getCookie(name) {
-  var cookieArr = document.cookie.split(';');
-
-  for (var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split('=');
-    if (name === cookiePair[0].trim()) {
-      return decodeURIComponent(cookiePair[1]);
-    }
-  }
-
-  return null;
-}

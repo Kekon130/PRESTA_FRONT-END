@@ -1,33 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function checkSession() {
-    var token = getCookie('id_token');
-    if(!token) {
-      window.location.href = '../../Authentication/login.html';
-    }
-  }
-
-  function getUserRol() {
-    var token = getCookie('id_token');    
-    var payload = token.split('.')[1];
-    var decodedPayload = atob(payload);
-    var payloadObj = JSON.parse(decodedPayload);
-    return payloadObj['cognito:groups'] || [];
-  }
-
-  function veryfyRol() {
-    var userRol = getUserRol();
-    if (!userRol.includes(window._env_.USER_ROLES.GESTORES)) {
-      alert('No tienes permisos para acceder a esta página');
-      window.location.href = '../../Authentication/login.html';
-    }
-  }
-
   function updateAdditionalFields(materialType) {
     var additionalFields = document.getElementById('additionalFields');
     additionalFields.innerHTML = '';
+    var materialTypes = window._env_.MATERIAL_TYPES;
 
     switch(materialType) {
-      case window._env_.MATERIAL_TYPES.LIBROS:
+      case materialTypes.LIBROS:
         additionalFields.innerHTML = `
         <div class="form-group>
           <label for="ISBNMaterial">ISBN</label>
@@ -42,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
           <input type="text" class="form-control" id="AsignaturaMaterial" name="AsignaturaMaterial" required>
         </div>`;
         break;
-      case window._env_.MATERIAL_TYPES.CALCULADORAS:
+      case materialTypes.CALCULADORAS:
         additionalFields.innerHTML = `
         <div class="form-group>
           <label for="ModeloMaterial">Modelo</label>
           <input type="text" class="form-control" id="ModeloMaterial" name="ModeloMaterial" required>
         </div>`;
         break;
-      case window._env_.MATERIAL_TYPES.APUNTES:
+      case materialTypes.APUNTES:
         additionalFields.innerHTML = `
         <div class="form-group>
           <label for="AutorMaterial">Autor</label>
@@ -64,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   checkSession();
-  veryfyRol();
+  var userRoles = window._env_.USER_ROLES;
+  veryfyRol([userRoles.GESTORES]);
 
   var initialMaterialType = document.getElementById('TipoMaterial').value;
   updateAdditionalFields(initialMaterialType);
@@ -125,16 +104,3 @@ document.addEventListener('DOMContentLoaded', function() {
     updateAdditionalFields(materialType);
   });
 });
-
-function getCookie(name) {
-  var cookieArr = document.cookie.split(';');
-
-  for (var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split('=');
-    if (name === cookiePair[0].trim()) {
-      return decodeURIComponent(cookiePair[1]);
-    }
-  }
-
-  return null;
-}

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       password: password
     };
 
-    fetch('https://qfqzi5nng6.execute-api.eu-north-1.amazonaws.com/Second_Sprint/access_token', {
+    fetch(`${window._env_.BASE_API_URL}/access_token`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(data => {
       document.cookie = `id_token=${data.id_token}; path=/`;
-      window.location.href = '../index.html';
+      window.location.href = '../../index.html';
     })
     .catch(error => {
       alert('Usuario o contraseña incorrectos');

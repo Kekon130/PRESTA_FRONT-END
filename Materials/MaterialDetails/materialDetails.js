@@ -1,35 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var userRoles = window._env_.USER_ROLES;
-
-  function checkSession() {
-    var token = getCookie('id_token');
-    if (!token) {
-      window.location.href = '../../Authentication/login.html';
-    }
-  }
-
+  var userRoles = window._env_.USER_ROLES
   checkSession();
-
-  function getQueryParams() {
-    var queryParams = {};
-    var queryString = window.location.search.slice(1);
-    var queryArray = queryString.split('&');
-
-    queryArray.forEach(function(query) {
-      var queryPair = query.split('=');
-      queryParams[decodeURIComponent(queryPair[0])] = decodeURIComponent(queryPair[1]);
-    });
-
-    return queryParams;
-  }
-
-  function getUserRol() {
-    var token = getCookie('id_token');    
-    var payload = token.split('.')[1];
-    var decodedPayload = atob(payload);
-    var payloadObj = JSON.parse(decodedPayload);
-    return payloadObj['cognito:groups'] || [];
-  }
+  veryfyRol([userRoles.GESTORES, userRoles.ALUMNOS])
 
   var params = getQueryParams();
   var materialID = params.id;
@@ -120,16 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
     materialDetails.innerHTML = `<p>Error al cargar el material: ${error.message}.</p>`;
   });
 });
-
-function getCookie(name) {
-  var cookieArr = document.cookie.split(';');
-
-  for (var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split('=');
-    if (name === cookiePair[0].trim()) {
-      return decodeURIComponent(cookiePair[1]);
-    }
-  }
-
-  return null;
-}

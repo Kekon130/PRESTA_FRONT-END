@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listado de Materiales - PRESTA</title>
+    <title>Listado de Usuarios - PRESTA</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
   </head>
 
   <body>
     <header class="bg-primary text-white p-3">
       <div class="container d-flex justify-content-between align-items-center">
         <h1 class="h1 mb-0">
-          <a href="../../index.html" class="text-white text-decoration-none"
+          <a href="../index.html" class="text-white text-decoration-none"
             >PRESTA</a
           >
         </h1>
@@ -24,22 +24,9 @@
             <li class="nav-item">
               <a
                 href="#"
-                id="materialsLink"
+                id="usuariosLink"
                 class="nav-link text-white display-4"
-                >Materiales</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#" id="loansLink" class="nav-link text-white display-4"
-                >Préstamos</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                href="#"
-                id="reservationsLink"
-                class="nav-link text-white display-4"
-                >Reservas</a
+                >Usuarios</a
               >
             </li>
           </ul>
@@ -49,18 +36,18 @@
             Cerrar Sesi&oacute;n
           </button>
           <button id="profileButton" class="btn btn-light">Perfil</button>
-        </div>
       </div>
     </header>
 
     <div class="container mt-5">
-      <div id="editMaterialFormContainer"></div>
+      <h2 class="h2">Listado de Usuarios</h2>
+      <div id="userList" class="mt-4"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./editMaterial.js"></script>
-    <script src="../../app.js"></script>
-    <script src="../../config.js"></script>
+    <script src="./usuarios.js"></script>
+    <script src="../app.js"></script>
+    <script src="../config.js"></script>
   </body>
 </html>

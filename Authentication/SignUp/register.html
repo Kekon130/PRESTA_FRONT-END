@@ -8,14 +8,14 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../../styles.css" />
   </head>
 
   <body>
     <header class="bg-primary text-white p-3">
       <div class="container d-flex justify-content-between align-items-center">
         <h1 class="h3 mb-0">Crear Cuenta</h1>
-        <a href="../index.html" class="btn btn-danger">Volver</a>
+        <a href="../../index.html" class="btn btn-danger">Volver</a>
       </div>
     </header>
 
@@ -55,6 +55,18 @@
                     required
                   />
                 </div>
+                <div class="form-group">
+                  <label for="registerConfirmPassword"
+                    >Confirmar Contrase&nacute;a</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    required
+                  />
+                </div>
                 <button type="submit" class="btn btn-primary">
                   Crear Cuenta
                 </button>
@@ -68,5 +80,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./register.js"></script>
+    <script src="../../config.js"></script>
   </body>
 </html>
