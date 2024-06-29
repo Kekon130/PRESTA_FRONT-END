@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var userRoles = window._env_.USER_ROLES;
 
   checkSession();
-  veryfyRol([userRoles.GESTORES]);
+  verifyRol([userRoles.GESTORES]);
 
   var materialData = localStorage.getItem('materialData');
   if (!materialData) {

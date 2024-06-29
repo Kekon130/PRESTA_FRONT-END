@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   checkSession();
   var userRoles = window._env_.USER_ROLES;
-  veryfyRol([userRoles.ADMINISTRADORES]);
+  verifyRol([userRoles.ADMINISTRADORES]);
 
   var userList = document.getElementById('userList');
 
@@ -23,15 +23,18 @@ document.addEventListener('DOMContentLoaded', function() {
   .then(function(data) {
     var usersHTML = '';
 
-    Object.keys(data).forEach(function(user) {
+    console.log(data)
+
+    data['users'].forEach(function(user) {
+      console.log(user)
       usersHTML += `
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">${user.name}</h5>
           <p class="card-text">Correo: ${user.email}</p>
-          <p class="card-text">Rol: ${user.role}</p>
+          <p class="card-text">Rol: ${user.rol}</p>
         </div>
-        <button id="changeRolButton" class="btn btn-warning changeRolButton" data-user-id="${user.username}" data-user-rol="${user.role}">Cambiar Rol</button>
+        <button id="changeRolButton" class="btn btn-warning changeRolButton" data-user-id="${user.username}" data-user-rol="${user.rol}">Cambiar Rol</button>
       </div>
       `;
     });

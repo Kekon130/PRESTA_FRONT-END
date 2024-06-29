@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   checkSession();
   var userRoles = window._env_.USER_ROLES;
-  veryfyRol([userRoles.GESTORES, userRoles.ALUMNOS]);
+  verifyRol([userRoles.GESTORES, userRoles.ALUMNOS]);
 
-  var userRoles = getUserRol();
+  var userRol = getUserRol();
 
-  if (userRoles.includes(userRoles.GESTORES)) {
+  if (userRol === userRoles.GESTORES) {
     document.getElementById('addMaterialButton').style.display = 'inline-block';
     document.getElementById('addMaterialButton').addEventListener('click', function() {
       window.location.href = './MaterialsAdd/addMaterial.html';

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="es">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listado de Materiales - PRESTA</title>
+    <title>Listado de Reservas - PRESTA</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,14 +22,14 @@
           <ul class="nav">
             <li class="nav-item">
               <a
-                href="#"
+                href="../Materials/materials.html"
                 id="materialsLink"
                 class="nav-link text-white display-4"
                 >Materiales</a
               >
             </li>
             <li class="nav-item">
-              <a href="#" id="loansLink" class="nav-link text-white display-4"
+              <a href="./reservas.html" id="loansLink" class="nav-link text-white display-4"
                 >Préstamos</a
               >
             </li>
@@ -54,24 +53,16 @@
     </header>
 
     <div class="container mt-5">
-      <h2 class="h2">Listado de Materiales</h2>
-      <div class="d-flex justify-content-between align-items-center">
-        <button
-          id="addMaterialButton"
-          class="btn btn-success"
-          ,
-          style="display: none"
-        >
-          Agregar Material
-        </button>
-      </div>
-      <div id="materialsList" class="mt-4"></div>
+      <h2 class="h2">Listado de Reservas del Usuario</h2>
+      <div id="userReservationsList" class="mt-4"></div>
+      <hr>
+      <h2 class="h2">Listado de Reservas</h2>
+      <div id="reservationsList" class="mt-4"></div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./materials.js"></script>
+    <script src="./reservas.js"></script>
     <script src="../app.js"></script>
     <script src="../config.js"></script>
-  </body>
 </html>

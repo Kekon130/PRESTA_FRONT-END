@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   var userRoles = window._env_.USER_ROLES
   checkSession();
-  veryfyRol([userRoles.GESTORES, userRoles.ALUMNOS])
+  verifyRol([userRoles.GESTORES, userRoles.ALUMNOS])
 
   var params = getQueryParams();
   var materialID = params.id;
@@ -47,6 +47,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     materialDetails.innerHTML = materialDetailsHTML;
 
+    document.getElementById('reserveButton').addEventListener('click', function() {
+      var confirmation = confirm('¿Está seguro que desea reservar este material?');
+      if (confirmation) {
+        fetch(`${window._env_.BASE_API_URL}/reservas/alumnos`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            auth: getCookie('id_token')
+          },
+          body: JSON.stringify({
+            Material_Nombre: material.Nombre,
+            Material_Type: materialType
+          })
+        })
+        .then(function(response) {
+          if (!response.ok) {
+            return response.json().then(function(error) {
+              throw new Error(error.message);
+            });
+          } else {
+            alert('Material reservado con éxito.');
+            window.location.href = '../../Reservas/reservas.html';
+          }
+        })
+        .catch(function(error) {
+          alert(`Error al reservar el material: ${error.message}`);
+        });
+      }
+    });
+
     document.getElementById('editButton').addEventListener('click', function() {
       localStorage.setItem('materialData', JSON.stringify(material));
       window.location.href = `../MaterialsEdit/editMaterial.html?type=${encodeURIComponent(materialType)}&id=${encodeURIComponent(materialID)}`;
@@ -82,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var userRol = getUserRol();
-    if (userRol.includes(userRoles.GESTORES)) {
+    if (userRol === userRoles.GESTORES) {
       document.getElementById('editButton').style.display = 'inline-block';
       document.getElementById('deleteButton').style.display = 'inline-block';
     }

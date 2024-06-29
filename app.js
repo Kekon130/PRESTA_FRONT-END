@@ -26,7 +26,7 @@ function getUserRol() {
   return payloadObj['cognito:groups'][0] || [];
 }
 
-function veryfyRol(roles) {
+function verifyRol(roles) {
   var userRol = getUserRol();
   if (!roles.includes(userRol)){
     alert('No tienes permisos para acceder a esta página');

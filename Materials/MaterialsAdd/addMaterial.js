@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   checkSession();
   var userRoles = window._env_.USER_ROLES;
-  veryfyRol([userRoles.GESTORES]);
+  verifyRol([userRoles.GESTORES]);
 
   var initialMaterialType = document.getElementById('TipoMaterial').value;
   updateAdditionalFields(initialMaterialType);

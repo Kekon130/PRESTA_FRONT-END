@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <ul class="nav">
       <li class="nav-item">
         <a
-          href="#"
+          href="./Usuarios/usuarios.html"
           id="usuariosLink"
           class="nav-link text-white display-4"
           >Usuarios</a
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </li>
       <li class="nav-item">
         <a
-          href="#"
+          href="./Reservas/reservas.html"
           id="reservationsLink"
           class="nav-link text-white display-4"
           >Reservas</a
