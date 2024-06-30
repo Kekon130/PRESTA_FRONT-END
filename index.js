@@ -4,16 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (token) {
     document.getElementById('authButtons').style.display = 'none';
     document.getElementById('userLink').style.display = 'block';
-
-    document.getElementById('userLink').addEventListener('click', () => {
-      window.location.href = './Usuarios/UsuarioDetalles/userDetails.html';
-    });
-
-    document.getElementById('logoutButton').addEventListener('click', () => {
-      document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-      window.location.href = './Authentication/login.html';
-    });
   } else {
     document.getElementById('authButtons').style.display = 'block';
     document.getElementById('userLink').style.display = 'none';
@@ -47,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         >
       </li>
       <li class="nav-item">
-        <a href="#" id="loansLink" class="nav-link text-white display-4"
+        <a href="./Prestamos/prestamos.html" id="loansLink" class="nav-link text-white display-4"
           >Prestamos</a
         >
       </li>

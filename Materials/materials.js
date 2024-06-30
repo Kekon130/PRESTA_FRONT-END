@@ -34,10 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var materialsType = key.charAt(0).toUpperCase() + key.slice(1);
       materialsHTML += `<h3>${materialsType}</h3>`;
 
-      data[key].forEach(function(material, index) {
-        var materialID = index + 1;
+      data[key].forEach(function(material) {
         materialsHTML += `
-        <a href="./MaterialDetails/materialDetails.html?id=${encodeURIComponent(materialID)}&type=${encodeURIComponent(materialsType)}" class="mb-3 text-decoration-none text-dark">
+        <a href="./MaterialDetails/materialDetails.html?id=${encodeURIComponent(material.ID)}&type=${encodeURIComponent(materialsType)}" class="mb-3 text-decoration-none text-dark">
           <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">${material.Nombre}</h5>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listado de Pr&eacute;stamos - PRESTA</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+
+  <body>
+    <header class="bg-primary text-white p-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h1 mb-0">
+          <a href="../../index.html" class="text-white text-decoration-none"
+            >PRESTA</a
+          >
+        </h1>
+        <nav class="d-flex justify-content-between align-items-left w-50">
+          <ul class="nav">
+            <li class="nav-item">
+              <a
+                href="../../Materials/materials.html"
+                id="materialsLink"
+                class="nav-link text-white display-4"
+                >Materiales</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="../prestamos.html"
+                id="loansLink"
+                class="nav-link text-white display-4"
+                >Préstamos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="../../Reservas/reservas.html"
+                id="reservationsLink"
+                class="nav-link text-white display-4"
+                >Reservas</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div id="userLink">
+          <button id="logoutButton" class="btn btn-danger">
+            Cerrar Sesi&oacute;n
+          </button>
+          <button id="profileButton" class="btn btn-light">Perfil</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mt-5">
+      <h1 class="h1">Agregar nuevo Pr&eacute;stamo</h1>
+      <form id="addPrestamoForm">
+        <div class="form-group">
+          <label for="alumnoEmail">Correo electr&oacute;nico del alumno</label>
+          <input type="email" class="form-control" id="alumnoEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="materialNombre">Nombre del material</label>
+          <input
+            type="text"
+            class="form-control"
+            id="materialNombre"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tipoMaterial">Tipo de material</label>
+          <select class="form-control" id="tipoMaterial" required>
+            <option value="Libros">Libros</option>
+            <option value="Apuntes">Apuntes</option>
+            <option value="Calculadoras">Calculadoras</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success">
+          Agregar Pr&eacute;stamo
+        </button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./addPrestamo.js"></script>
+    <script src="../../config.js"></script>
+    <script src="../../app.js"></script>
+  </body>
+</html>

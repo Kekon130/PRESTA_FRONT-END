@@ -74,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
       Modelo: additionalData.ModeloMaterial ? document.getElementById('ModeloMaterial').value : undefined
     };
 
-    console.log(data);
-
     fetch(`${window._env_.BASE_API_URL}/material/${tipoMaterial}`, {
       method: 'POST',
       headers: {

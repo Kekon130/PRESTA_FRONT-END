@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('profileButton').addEventListener('click', () => {
+    window.location.href = './Usuarios/UsuarioDetalles/userDetails.html';
+  });
+
+  document.getElementById('logoutButton').addEventListener('click', () => {
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    window.location.href = './Authentication/login.html';
+  });
+});
+
 function getCookie(name) {
   var cookieArr = document.cookie.split(';');
 
