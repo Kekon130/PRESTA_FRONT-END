@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch(`${window._env_.BASE_API_URL}/reservas/alumnos`, {
     method: 'GET',
     headers: {
-      'auth': getCookie('id_token')
+      'auth': sessionStorage.getItem('id_token')
     }
   })
   .then(function(response) {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
           fetch(`${window._env_.BASE_API_URL}/reservas/alumnos/${reservationId}`, {
             method: 'PATCH',
             headers: {
-              'auth': getCookie('id_token')
+              'auth': sessionStorage.getItem('id_token')
             }
           })
           .then(function(response) {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.reload();
   });
 
-  var userRol = getUserRol();
+  var userRol = sessionStorage.getItem('rol');
 
   if (userRol === userRoles.GESTORES) {
     var reservationsList = document.getElementById('reservationsList');
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`${window._env_.BASE_API_URL}/reservas/gestores`, {
       method: 'GET',
       headers: {
-        'auth': getCookie('id_token')
+        'auth': sessionStorage.getItem('id_token')
       }
     })
     .then(function(response) {
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json',
-                'auth': getCookie('id_token')
+                'auth': sessionStorage.getItem('id_token')
               }
             })
             .then(function(response) {

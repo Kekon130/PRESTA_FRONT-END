@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch(`${window._env_.BASE_API_URL}/users/administradores`, {
     method: 'GET',
     headers: {
-      'auth': getCookie('id_token')
+      'auth': sessionStorage.getItem('id_token')
     }
   })
   .then(function(response) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`${window._env_.BASE_API_URL}/users/administradores/${userId}`, {
           method: 'PATCH',
           headers: {
-            'auth': getCookie('id_token'),
+            'auth': sessionStorage.getItem('id_token'),
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({

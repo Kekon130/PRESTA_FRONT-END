@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
   function checkSession() {
-    var token = getCookie('id_token');
+    var token = sessionStorage.getItem('id_token');
     if(!token) {
       window.location.href = "../../Authentication/login.html";
     }
   }
 
   function getUserAttributes() {
-    var token = getCookie('id_token');    
+    var token = sessionStorage.getItem('id_token');    
     var payload = token.split('.')[1];
     var decodedPayload = atob(payload);
     var payloadObj = JSON.parse(decodedPayload);
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   checkSession();
 
   var userData = getUserAttributes();
-  var userEditFormContainer = document.getElementById('userEditFormContainer');
+  var userEditFormContainer = document.getElementById('editUserFormContainer');
   var userEditForm = `
     <form id="userEditForm">
       <div class="form-group">
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        auth: getCookie('id_token')
+        auth: sessionStorage.getItem('id_token')
       },
       body: JSON.stringify(userAttributes)
     })

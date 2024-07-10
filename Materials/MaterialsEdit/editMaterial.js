@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        auth: getCookie('id_token')
+        auth: sessionStorage.getItem('id_token')
       },
       body: JSON.stringify(materialData)
     })

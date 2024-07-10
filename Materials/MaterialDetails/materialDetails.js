@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch(`${window._env_.BASE_API_URL}/material/${materialType}/${materialID}`, {
     method: 'GET',
     headers: {
-      auth: getCookie('id_token')
+      auth: sessionStorage.getItem('id_token')
     }
   })
   .then(function(response) {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
   .then(function(data) {
-    var material = data.Material;
+    var material = data.material;
     var materialDetailsHTML = `
       <div class="card">
         <div class="card-body">
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            auth: getCookie('id_token')
+            auth: sessionStorage.getItem('id_token')
           },
           body: JSON.stringify({
             Material_Nombre: material.Nombre,
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            auth: getCookie('id_token')
+            auth: sessionStorage.getItem('id_token')
           }
         })
         .then(function(response) {
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    var userRol = getUserRol();
+    var userRol = sessionStorage.getItem('rol');
     if (userRol === userRoles.GESTORES) {
       document.getElementById('editButton').style.display = 'inline-block';
       document.getElementById('deleteButton').style.display = 'inline-block';

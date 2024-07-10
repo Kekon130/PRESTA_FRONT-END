@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var userPrestamosList = document.getElementById('userPrestamosList');
   var estadoPrestamo = window._env_.PRESTAMOS_ESTADOS;
-  var userRol = getUserRol();
+  var userRol = sessionStorage.getItem('rol');
 
   fetch(`${window._env_.BASE_API_URL}/prestamos/alumnos`, {
     method: 'GET',
     headers: {
-      'auth': getCookie('id_token')
+      'auth': sessionStorage.getItem('id_token')
     }
   })
   .then(function(response) {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`${window._env_.BASE_API_URL}/prestamos/gestores`, {
       method: 'GET',
       headers: {
-        'auth': getCookie('id_token')
+        'auth': sessionStorage.getItem('id_token')
       }
     })
     .then(function(response) {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json',
-                'auth': getCookie('id_token')
+                'auth': sessionStorage.getItem('id_token')
               }
             })
             .then(function(response) {
@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(function(error) {
       alert(error);
-      window.location.reload();
     });
   }
 });

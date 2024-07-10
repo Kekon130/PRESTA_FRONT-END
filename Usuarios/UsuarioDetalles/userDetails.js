@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
   checkSession();
   
-  var userAttributes = getUserAttributes();
   var userInfo = document.getElementById('userInfo');
   userInfo.innerHTML = `
     <h3>Usuario</h3>
-    <p><strong>Nombre:</strong> ${userAttributes.name}</p>
-    <p><strong>Email:</strong> ${userAttributes.email}</p>
-    <p><strong>Rol:</strong> ${userAttributes.rol}</p>
+    <p><strong>Nombre:</strong> ${sessionStorage.getItem('name')}</p>
+    <p><strong>Email:</strong> ${sessionStorage.getItem('email')}</p>
+    <p><strong>Rol:</strong> ${sessionStorage.getItem('rol')}</p>
   `;
 
   document.getElementById('editButton').addEventListener('click', function() {
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       fetch(`${window._env_.BASE_API_URL}/usuario/alumnos/${userAttributes.userName}`, {
         method: 'DELETE',
         headers: {
-          auth: getCookie('id_token')
+          auth: sessionStorage.getItem('id_token')
         }
       })
       .then(function(response) {

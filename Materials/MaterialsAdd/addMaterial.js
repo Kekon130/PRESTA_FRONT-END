@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`${window._env_.BASE_API_URL}/material/${tipoMaterial}`, {
       method: 'POST',
       headers: {
-        'auth': getCookie('id_token'),
+        'auth': sessionStorage.getItem('id_token'),
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)

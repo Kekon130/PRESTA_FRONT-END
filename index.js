@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  var token = getCookie('id_token');
+  var token = sessionStorage.getItem('id_token');
+  console.log(token);
 
   if (token) {
     document.getElementById('authButtons').style.display = 'none';
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('userLink').style.display = 'none';
   }
   
-  var userRol = getUserRol();
+  var userRol = sessionStorage.getItem('rol');
   var navigationBar = document.getElementById('navigationBar');
 
   if (userRol.includes(window._env_.USER_ROLES.ADMINISTRADORES)) {

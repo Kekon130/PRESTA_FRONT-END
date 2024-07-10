@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var userRoles = window._env_.USER_ROLES;
   verifyRol([userRoles.GESTORES, userRoles.ALUMNOS]);
 
-  var userRol = getUserRol();
+  var userRol = sessionStorage.getItem('rol');
 
   if (userRol === userRoles.GESTORES) {
     document.getElementById('addMaterialButton').style.display = 'inline-block';
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch(`${window._env_.BASE_API_URL}/material`, {
     method: 'GET',
     headers: {
-      'auth': getCookie('id_token')
+      'auth': sessionStorage.getItem('id_token')
     }
   })
   .then(function(response) {

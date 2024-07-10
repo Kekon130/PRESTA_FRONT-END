@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth': getCookie('id_token')
+        'auth': sessionStorage.getItem('id_token')
       },
       body: JSON.stringify(prestamo)
     })

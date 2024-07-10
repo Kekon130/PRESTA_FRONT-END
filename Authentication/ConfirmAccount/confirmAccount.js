@@ -3,14 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var queryParams = getQueryParams();
 
   confirmAccountForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
     var email = queryParams.email;
-    var code = document.getElementById('confirmationCode').value;
+    var code = document.getElementById('confirmAccountCode').value;
 
     var userData = {
-      code: code
+      confirmation_code: code
     };
 
-    fetch(`${window._env_.API_URL}/registro/${email}`, {
+    fetch(`${window._env_.BASE_API_URL}/registro/${email}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Cuenta confirmada correctamente');
         window.location.href = '../Login/login.html';
       } else {
-        alert('Error al confirmar la cuenta');
+        return response.json().then(function(error) {
+          throw new Error(error.message);
+        });
       }
     })
     .catch(function(error) {

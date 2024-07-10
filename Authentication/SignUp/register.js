@@ -19,17 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
         name: name
       };
   
-      fetch(`${window._env_.API_URL}/register`, {
+      fetch(`${window._env_.BASE_API_URL}/registro`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(userData)
       })
-      .then(response => response.json())
-      .then(data => {
-        alert('Usuario registrado correctamente');
-        window.location.href = `../ConfirmAccount/confirmAccount.html?email=${encodeURIComponent(email)}`;
+      .then(response => {
+        if (response.ok) {
+          alert('Usuario registrado correctamente');
+          window.location.href = '../ConfirmAccount/confirmAccount.html';
+        } else {
+          return response.json().then(error => {
+            throw new Error(error.message);
+          });
+        }
       })
       .catch(error => {
         alert(`Error al registrar usuario: ${error.message}`);
